@@ -45,6 +45,7 @@ if [ -z "$VERSION" ]; then
 	VERSION=$(pacman -Q pavucontrol-qt | awk 'NR==1 {print $2; exit}')
 fi
 export VERSION
+echo "$VERSION" > ~/version
 
 # MAKE APPIAMGE WITH FUSE3 COMPATIBLE APPIMAGETOOL
 cd ..
@@ -54,8 +55,4 @@ chmod +x ./appimagetool
 ./appimagetool --comp zstd \
 	--mksquashfs-opt -Xcompression-level --mksquashfs-opt 22 \
 	-n -u "$UPINFO" "$PWD"/AppDir "$PWD"/"$APP"-"$VERSION"-anylinux-"$ARCH".AppImage
-
-mv ./*.AppImage* ../
-cd ..
-rm -rf ./"$APP"
 echo "All Done!"
