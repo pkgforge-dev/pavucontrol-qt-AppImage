@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: build
+    - name: Get dependencies
       if: always()
       run: chmod +x ./get-dependencies.sh && ./get-dependencies.sh
 
