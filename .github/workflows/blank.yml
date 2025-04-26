@@ -5,33 +5,19 @@ concurrency:
 
 on:
   schedule:
-    - cron: "0 15 * * 0"
+    - cron: "0 16 1/14 * *"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-22.04
-    container: artixlinux/artixlinux:latest
+    container: ghcr.io/pkgforge-dev/archlinux:latest
     steps:
     - uses: actions/checkout@v4
 
     - name: build
       if: always()
-      run: |
-        sed -i 's/DownloadUser/#DownloadUser/g' /etc/pacman.conf
-        pacman -Syu --noconfirm base-devel curl desktop-file-utils git wget \
-          base-devel patchelf pavucontrol-qt qt6ct qt6-wayland xorg-server-xvfb strace
-
-        # Artix repos don't have zsyc
-        wget https://london.mirror.pkgbuild.com/extra/os/x86_64/zsync-0.6.2-5-x86_64.pkg.tar.zst
-        pacman -U --noconfirm ./zsync-0.6.2-5-x86_64.pkg.tar.zst
-
-    - name: Install iculess qt6-base
-      run: |
-        QT6_URL="https://github.com/pkgforge-dev/llvm-libs-debloated/releases/download/continuous/qt6-base-iculess-x86_64.pkg.tar.zst"
-        wget "$QT6_URL" -O ./qt6-base.pkg.tar.zst
-        pacman -U --noconfirm ./qt6-base.pkg.tar.zst
-        rm -f ./qt6-base.pkg.tar.zst
+      run: chmod +x ./get-dependencies.sh && ./get-dependencies.sh
 
     - name: Make AppImage
       run: |
