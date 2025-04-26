@@ -15,10 +15,10 @@ jobs:
       matrix:
         include:
           - runs-on: ubuntu-latest
-            name: "Build goverlay appimage"
+            name: "Build AppImage"
             arch: x86_64
           - runs-on: ubuntu-24.04-arm
-            name: "Build goverlay appimage"
+            name: "Build AppImage"
             arch: aarch64
     container: ghcr.io/pkgforge-dev/archlinux:latest
     steps:
