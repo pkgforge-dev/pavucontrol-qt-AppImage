@@ -1,4 +1,9 @@
-# pavucontrol-qt-AppImage
+# pavucontrol-qt-AppImage 🐧
+
+[![GitHub Downloads](https://img.shields.io/github/downloads/pkgforge-dev/pavucontrol-qt-AppImage/total?logo=github&label=GitHub%20Downloads)](https://github.com/pkgforge-dev/pavucontrol-qt-AppImage/releases/latest)
+[![CI Build Status](https://github.com//pkgforge-dev/pavucontrol-qt-AppImage/actions/workflows/blank.yml/badge.svg)](https://github.com/pkgforge-dev/pavucontrol-qt-AppImage/releases/latest)
+
+* [Latest Stable Release](https://github.com/pkgforge-dev/pavucontrol-qt-AppImage/releases/latest)
 
 **Crazy moment we are living where Qt has better theme compatiblity with GTK3 than GTK4 itself.** 🤣
 
