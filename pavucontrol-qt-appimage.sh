@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eUx
+set -eux
 
 ARCH="$(uname -m)"
 URUNTIME="https://raw.githubusercontent.com/pkgforge-dev/Anylinux-AppImages/refs/heads/main/useful-tools/uruntime2appimage.sh"
