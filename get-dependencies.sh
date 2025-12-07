@@ -17,7 +17,6 @@ pacman -Syu --noconfirm \
 	pulseaudio            \
 	pulseaudio-alsa       \
 	qt6ct                 \
-	qt6-wayland           \
 	wget                  \
 	xorg-server-xvfb      \
 	zsync
