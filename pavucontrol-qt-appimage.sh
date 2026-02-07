@@ -1,26 +1,19 @@
 #!/bin/sh
 
-set -eux
+set -eu
 
-ARCH="$(uname -m)"
-URUNTIME="https://raw.githubusercontent.com/pkgforge-dev/Anylinux-AppImages/refs/heads/main/useful-tools/uruntime2appimage.sh"
-SHARUN="https://raw.githubusercontent.com/pkgforge-dev/Anylinux-AppImages/refs/heads/main/useful-tools/quick-sharun.sh"
-
-VERSION=$(pacman -Q pavucontrol-qt | awk 'NR==1 {print $2; exit}')
-[ -n "$VERSION" ] && echo "$VERSION" > ~/version
-
+ARCH=$(uname -m)
+VERSION=$(pacman -Q pavucontrol-qt| awk '{print $2; exit}') # example command to get version of application here
+export ARCH VERSION
+export OUTPATH=./dist
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
-export OUTNAME=pavucontrol-qt-"$VERSION"-anylinux-"$ARCH".AppImage
+export APPNAME=pavucontrol-qt
 export ICON="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/64x64/apps/yast-sound.svg"
 export DESKTOP=/usr/share/applications/pavucontrol-qt.desktop
+export DEPLOY_OPENGL=0
 
-# ADD LIBRARIES
-wget --retry-connrefused --tries=30 "$SHARUN" -O ./quick-sharun
-chmod +x ./quick-sharun
-./quick-sharun "$(command -v pavucontrol-qt)"
+# Deploy dependencies
+quick-sharun /usr/bin/pavucontrol-qt
 
-# MAKE APPIMAGE WITH URUNTIME
-wget --retry-connrefused --tries=30 "$URUNTIME" -O ./uruntime2appimage
-chmod +x ./uruntime2appimage
-./uruntime2appimage
-echo "All Done!"
+# Turn AppDir into AppImage
+quick-sharun --make-appimage
