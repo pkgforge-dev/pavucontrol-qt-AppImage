@@ -11,7 +11,7 @@ export APPNAME=pavucontrol-qt
 export ICON="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/64x64/apps/yast-sound.svg"
 export DESKTOP=/usr/share/applications/pavucontrol-qt.desktop
 export DEPLOY_OPENGL=0
-export ANYLINUX_LIB=1
+export ALWAYS_SOFTWARE=1
 
 # Deploy dependencies
 quick-sharun /usr/bin/pavucontrol-qt
