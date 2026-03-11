@@ -6,8 +6,8 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm pavucontrol-qt qt6ct kvantum lxqt-qtplugin
+pacman -Syu --noconfirm pavucontrol-qt qt6ct kvantum lxqt-qtplugin breeze oxygen
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
-get-debloated-pkgs --add-common --prefer-nano
+get-debloated-pkgs --add-common --prefer-nano kiconthemes-mini
